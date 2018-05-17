@@ -2,7 +2,14 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
+// The time as text input by the user.
 let timeTextInput = "0000";
+
+// The actual time broken down into minutes and seconds.
+let time = {
+  minutes: 0,
+  seconds: 0
+};
 
 const timeEl = document.querySelector(".time");
 const pausePlayImageEl = document.querySelector(".pause-play-button img");
@@ -16,6 +23,8 @@ const editInputHandler = evt => {
   const numberPressed = key - 48;
   timeTextInput += numberPressed;
   timeTextInput = timeTextInput.substring(1);
+  time.minutes = Number(timeTextInput.substring(0, 2));
+  time.seconds = Number(timeTextInput.substring(2, 4));
   renderTime(
     Number(timeTextInput.substring(0, 2)),
     Number(timeTextInput.substring(2, 4))
@@ -63,12 +72,5 @@ document.querySelector(".pause-play-button").addEventListener("click", evt => {
   playing = true;
   pausePlayImageEl.src = "svg/controls-pause.svg";
   document.body.removeEventListener("keypress", editInputHandler);
-  time.minutes = Number(timeTextInput.substring(0, 2));
-  time.seconds = Number(timeTextInput.substring(2, 4));
   timerLoopIntervalId = setInterval(timerLoop, 1000);
 });
-
-let time = {
-  minutes: 0,
-  seconds: 0
-};
