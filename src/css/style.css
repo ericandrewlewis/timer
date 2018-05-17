@@ -1,0 +1,38 @@
+body {
+  font-family: 'Inconsolata', monospace;
+  -webkit-app-region: drag;
+  height: 100vh;
+  cursor: default;
+  background-color: #f8fdf6;
+  color: #1f271b;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.time {
+  text-align: center;
+  font-size: 4rem;
+}
+
+button {
+  -webkit-app-region: no-drag;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+button img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.controls {
+  text-align: center;
+}
