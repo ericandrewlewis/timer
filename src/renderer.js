@@ -23,21 +23,20 @@ const editInputHandler = evt => {
 };
 
 const renderTime = (minutes, seconds) => {
-  const timeFormatted =
-    minutes.toString().padStart(2, "0") +
-    ":" +
-    seconds.toString().padStart(2, "0");
+  const timeFormatted = `${minutes
+    .toString()
+    .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   timeEl.innerHTML = timeFormatted;
 };
 
 document.querySelector(".edit-button").addEventListener("click", evt => {
   clearInterval(timerLoopIntervalId);
   playing = false;
-  pausePlayImageEl.src = "controls-play.svg";
+  pausePlayImageEl.src = "svg/controls-play.svg";
   document.body.addEventListener("keypress", editInputHandler);
 });
 
-let timerLoopIntervalId = undefined;
+let timerLoopIntervalId;
 
 const timerLoop = () => {
   if (time.seconds > 0) {
@@ -46,11 +45,9 @@ const timerLoop = () => {
       clearInterval(timerLoopIntervalId);
     }
     time.seconds -= 1;
-  } else {
-    if (time.minutes > 0) {
-      time.minutes -= 1;
-      time.seconds = 59;
-    }
+  } else if (time.minutes > 0) {
+    time.minutes -= 1;
+    time.seconds = 59;
   }
   renderTime(time.minutes, time.seconds);
 };
@@ -60,11 +57,11 @@ document.querySelector(".pause-play-button").addEventListener("click", evt => {
   clearInterval(timerLoopIntervalId);
   if (playing) {
     playing = false;
-    pausePlayImageEl.src = "controls-play.svg";
+    pausePlayImageEl.src = "svg/controls-play.svg";
     return;
   }
   playing = true;
-  pausePlayImageEl.src = "controls-pause.svg";
+  pausePlayImageEl.src = "svg/controls-pause.svg";
   document.body.removeEventListener("keypress", editInputHandler);
   time.minutes = Number(timeTextInput.substring(0, 2));
   time.seconds = Number(timeTextInput.substring(2, 4));
