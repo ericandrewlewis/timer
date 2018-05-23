@@ -48,11 +48,10 @@ document.querySelector(".edit-button").addEventListener("click", evt => {
 let timerLoopIntervalId;
 
 const timerLoop = () => {
-  if (time.seconds > 0) {
-    if (time.minutes == 0) {
-      console.log("times up");
-      clearInterval(timerLoopIntervalId);
-    }
+  if (time.seconds === 0 && time.minutes == 0) {
+    console.log("times up");
+    clearInterval(timerLoopIntervalId);
+  } else if (time.seconds > 0) {
     time.seconds -= 1;
   } else if (time.minutes > 0) {
     time.minutes -= 1;
